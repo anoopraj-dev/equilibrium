@@ -1,13 +1,14 @@
-import { SectionTitle,FadeIn } from "./Shared";
+import { SectionTitle, FadeIn } from "./Shared";
+import { Icon } from "@iconify/react";
 
 const FEATURES = [
   {
-    icon: "⬡",
+    icon: "lucide:brain-circuit",
     title: "Algorithmic Profiling",
     desc: "Ingest your digital footprint. Our engine decodes LinkedIn profiles, GitHub commits, and career transcripts to build a structurally flawless profile mapping your true engineering worth.",
   },
   {
-    icon: "◈",
+    icon: "lucide:flask-conical",
     title: "Empirical Synthesis",
     desc: "Write resumes that win. Equilibrium transforms raw experience into persuasive, result-driven metrics that appeal directly to executive-level decision makers.",
   },
@@ -70,13 +71,12 @@ export default function Features() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 22,
                     marginBottom: 20,
                     color: "#f97316",
                     border: "1px solid rgba(249,115,22,0.2)",
                   }}
                 >
-                  {f.icon}
+                  <Icon icon={f.icon} style={{ fontSize: 24 }} />
                 </div>
                 <h3
                   style={{
@@ -187,12 +187,11 @@ export default function Features() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: 18,
                     color: "#f97316",
                     border: "1px solid rgba(249,115,22,0.2)",
                   }}
                 >
-                  ⟐
+                  <Icon icon="lucide:scan-search" style={{ fontSize: 20 }} />
                 </div>
                 <h3
                   style={{
@@ -219,10 +218,10 @@ export default function Features() {
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
                 {[
-                  "✓ Real-time ATS Scanning",
-                  "✓ PDF/JSON Resume Exports",
-                  "✓ Keyword Density Control",
-                  "✓ Modern Markdown Output",
+                  "Real-time ATS Scanning",
+                  "PDF/JSON Resume Exports",
+                  "Keyword Density Control",
+                  "Modern Markdown Output",
                 ].map((item) => (
                   <span
                     key={item}
@@ -230,8 +229,12 @@ export default function Features() {
                       color: "rgba(255,255,255,0.6)",
                       fontSize: 13,
                       fontFamily: "'Plus Jakarta Sans', sans-serif",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 6,
                     }}
                   >
+                    <Icon icon="lucide:check" style={{ color: "#f97316", fontSize: 13 }} />
                     {item}
                   </span>
                 ))}

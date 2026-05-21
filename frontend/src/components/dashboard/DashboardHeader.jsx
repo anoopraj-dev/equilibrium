@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react";
+
 export default function DashboardHeader({ activeTab, onQuickAction }) {
   const hour = new Date().getHours();
   const greeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
@@ -76,7 +78,7 @@ export default function DashboardHeader({ activeTab, onQuickAction }) {
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)")}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)")}
         >
-          <span style={{ fontSize: "16px" }}>🔔</span>
+          <Icon icon="lucide:bell" style={{ fontSize: "16px", color: "white" }} />
           {/* Notification Dot */}
           <span
             style={{
@@ -121,7 +123,7 @@ export default function DashboardHeader({ activeTab, onQuickAction }) {
             e.currentTarget.style.boxShadow = "0 4px 14px rgba(249, 115, 22, 0.3)";
           }}
         >
-          <span>✦</span> Generate Narrative
+          <Icon icon="lucide:sparkles" style={{ fontSize: "14px" }} /> Generate Narrative
         </button>
       </div>
     </header>

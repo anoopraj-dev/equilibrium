@@ -1,5 +1,6 @@
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
+import { Icon } from "@iconify/react";
 
 export default function Analytics() {
   const { resumes, aiUsage } = useApp();
@@ -16,10 +17,10 @@ export default function Analytics() {
   const maxActivity = Math.max(...weeklyActivity.map(d => d.actions));
 
   const topStats = [
-    { label: "Total Resumes", value: resumes.length, sub: "active drafts", icon: "📄" },
-    { label: "Avg. ATS Strength", value: `${avgStrength}%`, sub: "across all documents", icon: "⚡" },
-    { label: "AI Credits Used", value: `${aiUsage.monthlyCreditsUsed}/${aiUsage.monthlyCreditsLimit}`, sub: "this month", icon: "✦" },
-    { label: "Profile Views", value: "1,240", sub: "+14% this month", icon: "👁" },
+    { label: "Total Resumes", value: resumes.length, sub: "active drafts", icon: "lucide:file-text" },
+    { label: "Avg. ATS Strength", value: `${avgStrength}%`, sub: "across all documents", icon: "lucide:zap" },
+    { label: "AI Credits Used", value: `${aiUsage.monthlyCreditsUsed}/${aiUsage.monthlyCreditsLimit}`, sub: "this month", icon: "lucide:sparkles" },
+    { label: "Profile Views", value: "1,240", sub: "+14% this month", icon: "lucide:eye" },
   ];
 
   const card = { background: "rgba(18,18,18,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "16px", padding: isMobile ? "16px" : "24px", boxShadow: "0 8px 24px rgba(0,0,0,0.3)" };
@@ -44,7 +45,7 @@ export default function Analytics() {
               <h3 style={{ fontSize: "24px", fontWeight: 800, margin: "8px 0 4px", color: "white" }}>{s.value}</h3>
               <span style={{ fontSize: "11px", color: "#f97316" }}>{s.sub}</span>
             </div>
-            <span style={{ fontSize: "28px", opacity: 0.7 }}>{s.icon}</span>
+            <Icon icon={s.icon} style={{ fontSize: "28px", color: "#f97316", opacity: 0.8 }} />
           </div>
         ))}
       </div>
@@ -53,7 +54,7 @@ export default function Analytics() {
         {/* Weekly Activity Chart */}
         <div style={{ ...card }}>
           <h3 style={{ fontSize: "15px", fontWeight: 700, fontFamily: "'Playfair Display', serif", margin: "0 0 24px 0" }}>Weekly Activity</h3>
-          <div style={{ display: "flex", alignItems: "flex-end", gap: isMobile ? "6px" : "12px", height: "160px" }}>
+          <div style={{ flex: 1, display: "flex", alignItems: "flex-end", gap: isMobile ? "6px" : "12px", height: "160px" }}>
             {weeklyActivity.map((d, i) => (
               <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "8px", height: "100%" }}>
                 <div style={{ flex: 1, width: "100%", display: "flex", alignItems: "flex-end" }}>
@@ -114,13 +115,15 @@ export default function Analytics() {
           <h3 style={{ fontSize: "15px", fontWeight: 700, fontFamily: "'Playfair Display', serif", margin: "0 0 20px 0" }}>Career Insights</h3>
           <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
             {[
-              { icon: "🎯", text: "ATS score exceeds 90% threshold on 2 of your resumes." },
-              { icon: "📈", text: "Profile views increased 14% compared to last month." },
-              { icon: "✦", text: "AI writing credits are 42% consumed — consider upgrading before reset." },
-              { icon: "💡", text: "Add certifications to boost your weakest resume by ~8%." },
+              { icon: "lucide:target", text: "ATS score exceeds 90% threshold on 2 of your resumes." },
+              { icon: "lucide:trending-up", text: "Profile views increased 14% compared to last month." },
+              { icon: "lucide:sparkles", text: "AI writing credits are 42% consumed — consider upgrading before reset." },
+              { icon: "lucide:lightbulb", text: "Add certifications to boost your weakest resume by ~8%." },
             ].map((ins, i) => (
               <div key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
-                <span style={{ fontSize: "16px", marginTop: "1px" }}>{ins.icon}</span>
+                <span style={{ display: "inline-flex", marginTop: "2px", color: "#f97316" }}>
+                  <Icon icon={ins.icon} style={{ fontSize: "16px" }} />
+                </span>
                 <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.65)", lineHeight: "1.5", margin: 0 }}>{ins.text}</p>
               </div>
             ))}

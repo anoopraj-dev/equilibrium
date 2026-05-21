@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function Hero() {
   return (
@@ -138,7 +139,10 @@ export default function Hero() {
                   e.target.style.transform = "none";
                 }}
               >
-                ✦ Craft Your Resume
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                  <Icon icon="lucide:sparkles" style={{ fontSize: 15 }} />
+                  Craft Your Resume
+                </span>
               </button>
             </Link>
             <button

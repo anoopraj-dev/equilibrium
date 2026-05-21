@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 export default function ResumeCard({ resume, onEdit, onDelete }) {
   const [hovered, setHovered] = useState(false);
@@ -39,7 +40,9 @@ export default function ResumeCard({ resume, onEdit, onDelete }) {
           overflow: "hidden",
         }}
       >
-        <span style={{ fontSize: "42px", opacity: hovered ? 0.9 : 0.6, transition: "opacity 0.2s" }}>📄</span>
+        <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", opacity: hovered ? 0.9 : 0.5, transition: "opacity 0.2s" }}>
+          <Icon icon="lucide:file-text" style={{ fontSize: "40px", color: "rgba(255,255,255,0.6)" }} />
+        </span>
         {/* Template Style Stamp */}
         <div
           style={{
@@ -159,7 +162,7 @@ export default function ResumeCard({ resume, onEdit, onDelete }) {
             e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
           }}
         >
-          📥
+          <Icon icon="lucide:download" style={{ fontSize: "14px", color: "rgba(255,255,255,0.7)" }} />
         </button>
 
         <button
@@ -187,7 +190,7 @@ export default function ResumeCard({ resume, onEdit, onDelete }) {
             e.currentTarget.style.borderColor = "rgba(239, 68, 68, 0.15)";
           }}
         >
-          🗑️
+          <Icon icon="lucide:trash-2" style={{ fontSize: "14px", color: "#ef4444" }} />
         </button>
       </div>
     </div>

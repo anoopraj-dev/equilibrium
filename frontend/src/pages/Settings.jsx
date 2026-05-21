@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import { Tabs } from "../components/dashboard/CommonUI";
+import { Icon } from "@iconify/react";
 
 export default function Settings() {
   const { settings, setSettings, showToast, user } = useApp();
@@ -205,7 +206,13 @@ export default function Settings() {
                       transition: "all 0.2s"
                     }}
                   >
-                    {copied ? "Copied ✓" : "Copy"}
+                    {copied ? (
+                      <span style={{ display: "inline-flex", alignItems: "center", gap: "4px" }}>
+                        Copied <Icon icon="lucide:check" style={{ fontSize: "13px" }} />
+                      </span>
+                    ) : (
+                      "Copy"
+                    )}
                   </button>
                 </div>
                 <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.3)" }}>

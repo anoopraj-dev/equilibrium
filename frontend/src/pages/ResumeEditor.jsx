@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import { aiService } from "../services/aiService";
+import { Icon } from "@iconify/react";
 
 export default function ResumeEditor() {
   const { id } = useParams();
@@ -148,7 +149,7 @@ export default function ResumeEditor() {
           <div style={{ display: "flex", gap: "10px" }}>
             <button onClick={handleAISummary} disabled={aiLoading}
               style={{ flex: 1, background: aiLoading ? "rgba(249,115,22,0.4)" : "rgba(249,115,22,0.12)", border: "1px solid rgba(249,115,22,0.3)", borderRadius: "8px", padding: "9px 16px", color: "#f97316", fontWeight: 700, fontSize: "12px", cursor: aiLoading ? "not-allowed" : "pointer", whiteSpace: "nowrap" }}>
-              {aiLoading ? "Generating..." : "✦ AI Enhance"}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:sparkles" style={{ fontSize: "13px" }} />{aiLoading ? "Generating..." : "AI Enhance"}</span>
             </button>
             <button onClick={() => navigate(`/resume/${id}/preview`)} style={{ flex: 1, background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "8px", padding: "9px 16px", color: "white", fontWeight: 600, fontSize: "12px", cursor: "pointer" }}>Preview</button>
           </div>
@@ -182,7 +183,7 @@ export default function ResumeEditor() {
               <h3 style={{ fontSize: "15px", fontWeight: 700, fontFamily: "'Playfair Display', serif", margin: 0 }}>Professional Summary</h3>
               <button onClick={handleAISummary} disabled={aiLoading}
                 style={{ background: "rgba(249,115,22,0.12)", border: "1px solid rgba(249,115,22,0.25)", borderRadius: "8px", padding: "7px 14px", color: "#f97316", fontWeight: 700, fontSize: "12px", cursor: "pointer" }}>
-                {aiLoading ? "..." : "✦ Regenerate with AI"}
+                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:sparkles" style={{ fontSize: "13px" }} />{aiLoading ? "..." : "Regenerate with AI"}</span>
               </button>
             </div>
             <textarea value={resume.summary || ""} onChange={e => update("summary", e.target.value)} rows={8}

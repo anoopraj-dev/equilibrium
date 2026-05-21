@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function NotFound() {
   return (
@@ -31,7 +32,7 @@ export default function NotFound() {
           color: "white",
         }}
       >
-        ✦
+        <Icon icon="lucide:sparkles" style={{ fontSize: "36px", color: "white" }} />
       </div>
       <h1
         style={{

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 // ── TOAST COMPONENT ──
 export function Toast({ toast, onClose }) {
@@ -169,7 +170,7 @@ export function Accordion({ title, children }) {
         }}
       >
         <span>{title}</span>
-        <span style={{ fontSize: "12px", opacity: 0.5 }}>{isOpen ? "▲" : "▼"}</span>
+        <Icon icon={isOpen ? "lucide:chevron-up" : "lucide:chevron-down"} style={{ fontSize: "16px", opacity: 0.5 }} />
       </button>
       {isOpen && (
         <div style={{ padding: "20px", borderTop: "1px solid rgba(255, 255, 255, 0.05)", background: "rgba(0,0,0,0.25)" }}>
@@ -233,7 +234,13 @@ export function EmptyState({ icon, title, description, actionText, onAction }) {
         margin: "0 auto",
       }}
     >
-      <span style={{ fontSize: "40px", display: "block", marginBottom: "16px" }}>{icon}</span>
+      <span style={{ display: "flex", justifyContent: "center", marginBottom: "16px", color: "#f97316" }}>
+        {typeof icon === "string" && icon.startsWith("lucide:") || typeof icon === "string" && icon.includes(":") ? (
+          <Icon icon={icon} style={{ fontSize: "44px" }} />
+        ) : (
+          <span style={{ fontSize: "40px" }}>{icon}</span>
+        )}
+      </span>
       <h3 style={{ fontSize: "16px", fontWeight: 700, color: "white", margin: "0 0 8px 0" }}>{title}</h3>
       <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.4)", lineHeight: "1.6", margin: "0 0 20px 0" }}>
         {description}
@@ -275,7 +282,7 @@ export function ErrorState({ message, onRetry }) {
         margin: "20px auto",
       }}
     >
-      <span style={{ fontSize: "36px", display: "block", marginBottom: "12px" }}>⚠️</span>
+      <span style={{ display: "flex", justifyContent: "center", marginBottom: "12px", color: "#f87171" }}><Icon icon="lucide:alert-triangle" style={{ fontSize: "38px" }} /></span>
       <h4 style={{ fontSize: "15px", fontWeight: 700, color: "#f87171", margin: "0 0 6px 0" }}>An Error Occurred</h4>
       <p style={{ fontSize: "12px", color: "rgba(255, 255, 255, 0.5)", lineHeight: "1.5", margin: "0 0 16px 0" }}>
         {message || "We encountered an issue processing this request."}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function SignupForm() {
   const navigate = useNavigate();
@@ -81,7 +82,7 @@ export default function SignupForm() {
               fontSize: "14px",
             }}
           >
-            ✦
+            <Icon icon="lucide:sparkles" style={{ fontSize: "14px", color: "white" }} />
           </div>
           <span
             style={{
@@ -364,7 +365,7 @@ export default function SignupForm() {
               Assembling Profile...
             </>
           ) : (
-            "✦ Create Elite Account"
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:user-plus" style={{ fontSize: "14px" }} /> Create Elite Account</span>
           )}
         </button>
       </form>

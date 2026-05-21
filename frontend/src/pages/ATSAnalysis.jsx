@@ -3,6 +3,7 @@ import { atsService } from "../services/atsService";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import { SkeletonLoader, ErrorState, EmptyState, Tabs } from "../components/dashboard/CommonUI";
+import { Icon } from "@iconify/react";
 
 export default function ATSAnalysis() {
   const { showToast, deductAiCredit, activeResume } = useApp();
@@ -60,7 +61,10 @@ export default function ATSAnalysis() {
               disabled={loading}
               style={{ background: loading ? "rgba(249,115,22,0.5)" : "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "12px", padding: "14px", fontWeight: 700, fontSize: "14px", cursor: loading ? "not-allowed" : "pointer", boxShadow: "0 4px 14px rgba(249,115,22,0.3)", transition: "all 0.2s" }}
             >
-              {loading ? "⏳ Scanning Resume..." : "⚡ Run ATS Scan"}
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                <Icon icon={loading ? "lucide:loader" : "lucide:zap"} style={{ fontSize: "16px", animation: loading ? "spin 1s linear infinite" : "none" }} />
+                {loading ? "Scanning Resume..." : "Run ATS Scan"}
+              </span>
             </button>
           </div>
         </div>
@@ -77,7 +81,7 @@ export default function ATSAnalysis() {
 
           {!loading && !result && !error && (
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "300px" }}>
-              <EmptyState icon="🎯" title="Ready to Scan" description="Paste a job description on the left and hit Run ATS Scan to get a comprehensive keyword breakdown." />
+              <EmptyState icon="lucide:target" title="Ready to Scan" description="Paste a job description on the left and hit Run ATS Scan to get a comprehensive keyword breakdown." />
             </div>
           )}
 
@@ -104,7 +108,7 @@ export default function ATSAnalysis() {
                 {activeTab === "keywords" && result.keywordsAnalysis.map((k, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ color: k.found ? "#22c55e" : "#ef4444", fontSize: "14px" }}>{k.found ? "✓" : "✗"}</span>
+                      <span style={{ color: k.found ? "#22c55e" : "#ef4444", display: "inline-flex" }}><Icon icon={k.found ? "lucide:check" : "lucide:x"} style={{ fontSize: "14px" }} /></span>
                       <span style={{ fontSize: "14px", color: k.found ? "white" : "rgba(255,255,255,0.4)" }}>{k.keyword}</span>
                     </div>
                     <div style={{ display: "flex", gap: "8px" }}>
@@ -116,14 +120,14 @@ export default function ATSAnalysis() {
 
                 {activeTab === "missing" && result.missingSkills.map((s, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px", padding: "12px 16px", background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)", borderRadius: "10px" }}>
-                    <span style={{ color: "#ef4444" }}>⚠</span>
+                    <span style={{ color: "#ef4444", display: "inline-flex" }}><Icon icon="lucide:alert-triangle" style={{ fontSize: "15px" }} /></span>
                     <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.8)" }}>{s}</span>
                   </div>
                 ))}
 
                 {activeTab === "tips" && result.suggestions.map((s, i) => (
                   <div key={i} style={{ display: "flex", gap: "12px", padding: "12px 16px", background: "rgba(249,115,22,0.05)", border: "1px solid rgba(249,115,22,0.12)", borderRadius: "10px" }}>
-                    <span style={{ color: "#f97316", marginTop: "1px" }}>✦</span>
+                    <span style={{ color: "#f97316", display: "inline-flex", marginTop: "2px" }}><Icon icon="lucide:sparkles" style={{ fontSize: "14px" }} /></span>
                     <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)", lineHeight: "1.5" }}>{s}</span>
                   </div>
                 ))}

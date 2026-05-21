@@ -2,6 +2,7 @@ import { useState } from "react";
 import { linkedinService } from "../services/linkedinService";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
+import { Icon } from "@iconify/react";
 
 export default function LinkedInImport() {
   const { showToast, updateActiveResume, activeResume } = useApp();
@@ -59,7 +60,7 @@ export default function LinkedInImport() {
           <div key={i} style={{ display: "flex", alignItems: "center", flex: 1, width: "100%" }}>
             <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", alignItems: "center", gap: "10px" }}>
               <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: i <= step ? "linear-gradient(135deg,#f97316,#ea580c)" : "rgba(255,255,255,0.06)", border: i <= step ? "none" : "1px solid rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: 700, color: i <= step ? "white" : "rgba(255,255,255,0.3)", boxShadow: i <= step ? "0 0 12px rgba(249,115,22,0.3)" : "none", flexShrink: 0 }}>
-                {i < step ? "✓" : i + 1}
+                {i < step ? <Icon icon="lucide:check" style={{ fontSize: "12px" }} /> : i + 1}
               </div>
               <span style={{ fontSize: "11px", color: i <= step ? "#f97316" : "rgba(255,255,255,0.3)", fontWeight: 600, whiteSpace: "nowrap" }}>{s}</span>
             </div>
@@ -73,7 +74,7 @@ export default function LinkedInImport() {
         <div style={{ display: "grid", gridTemplateColumns: gridCols, gap: "24px" }}>
           {/* OAuth Card */}
           <div style={{ background: "rgba(18,18,18,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", padding: isMobile ? "24px" : "36px", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px", textAlign: "center" }}>
-            <div style={{ width: "64px", height: "64px", background: "#0077B5", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px" }}>in</div>
+            <div style={{ width: "64px", height: "64px", background: "#0077B5", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", color: "white" }}><Icon icon="mdi:linkedin" style={{ fontSize: "36px" }} /></div>
             <div>
               <h3 style={{ fontSize: "16px", fontWeight: 700, margin: "0 0 6px 0" }}>Connect LinkedIn</h3>
               <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.45)", lineHeight: "1.5", margin: 0 }}>Authorize Equilibrium to securely read your profile, experience, and skills.</p>
@@ -85,7 +86,7 @@ export default function LinkedInImport() {
 
           {/* PDF Upload Card */}
           <div style={{ background: "rgba(18,18,18,0.6)", border: "1px dashed rgba(255,255,255,0.12)", borderRadius: "20px", padding: isMobile ? "24px" : "36px", display: "flex", flexDirection: "column", alignItems: "center", gap: "20px", textAlign: "center" }}>
-            <div style={{ width: "64px", height: "64px", background: "rgba(249,115,22,0.12)", border: "1px solid rgba(249,115,22,0.25)", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "28px" }}>📄</div>
+            <div style={{ width: "64px", height: "64px", background: "rgba(249,115,22,0.12)", border: "1px solid rgba(249,115,22,0.25)", borderRadius: "16px", display: "flex", alignItems: "center", justifyContent: "center", color: "#f97316" }}><Icon icon="lucide:file-text" style={{ fontSize: "32px" }} /></div>
             <div>
               <h3 style={{ fontSize: "16px", fontWeight: 700, margin: "0 0 6px 0" }}>Upload Resume PDF</h3>
               <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.45)", lineHeight: "1.5", margin: 0 }}>Upload any existing resume and our AI will extract and structure your data.</p>
@@ -128,7 +129,7 @@ export default function LinkedInImport() {
           </div>
           <div style={{ display: "flex", gap: "12px", flexDirection: isMobile ? "column" : "row" }}>
             <button onClick={() => setStep(0)} style={{ flex: 1, background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "10px", padding: "13px", color: "rgba(255,255,255,0.6)", fontWeight: 600, fontSize: "13px", cursor: "pointer" }}>Restart</button>
-            <button onClick={handleConfirm} style={{ flex: 2, background: "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "10px", padding: "13px", fontWeight: 700, fontSize: "13px", cursor: "pointer", boxShadow: "0 4px 14px rgba(249,115,22,0.3)" }}>✓ Confirm & Import to Resume</button>
+            <button onClick={handleConfirm} style={{ flex: 2, background: "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "10px", padding: "13px", fontWeight: 700, fontSize: "13px", cursor: "pointer", boxShadow: "0 4px 14px rgba(249,115,22,0.3)", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px" }}><Icon icon="lucide:check" style={{ fontSize: "15px" }} /> Confirm & Import to Resume</button>
           </div>
         </div>
       )}
@@ -136,7 +137,7 @@ export default function LinkedInImport() {
       {/* Success */}
       {step === 3 && (
         <div style={{ background: "rgba(34,197,94,0.06)", border: "1px solid rgba(34,197,94,0.2)", borderRadius: "20px", padding: "48px", textAlign: "center" }}>
-          <span style={{ fontSize: "48px", display: "block", marginBottom: "16px" }}>✅</span>
+          <span style={{ display: "flex", justifyContent: "center", marginBottom: "16px", color: "#22c55e" }}><Icon icon="lucide:circle-check" style={{ fontSize: "52px" }} /></span>
           <h3 style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'Playfair Display', serif", color: "#22c55e", margin: "0 0 8px 0" }}>Import Successful</h3>
           <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.5)", margin: "0 0 24px 0" }}>Your LinkedIn profile data has been imported into your active resume draft.</p>
           <button onClick={() => setStep(0)} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: "10px", padding: "10px 20px", color: "white", fontWeight: 600, fontSize: "13px", cursor: "pointer" }}>Import Another</button>

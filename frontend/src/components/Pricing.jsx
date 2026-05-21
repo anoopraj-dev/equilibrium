@@ -1,4 +1,5 @@
 import { FadeIn,SectionTitle } from "./Shared";
+import { Icon } from "@iconify/react";
 
 const PLANS = [
   {
@@ -219,7 +220,7 @@ export default function Pricing() {
                           flexShrink: 0,
                         }}
                       >
-                        <span style={{ color: "#f97316", fontSize: 9 }}>✓</span>
+                        <Icon icon="lucide:check" style={{ color: "#f97316", fontSize: 9 }} />
                       </div>
                       <span
                         style={{

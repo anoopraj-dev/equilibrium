@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import { SkeletonLoader, EmptyState } from "../components/dashboard/CommonUI";
+import { Icon } from "@iconify/react";
 
 export default function JobTailoring() {
   const { showToast, deductAiCredit, activeResume } = useApp();
@@ -61,14 +62,17 @@ export default function JobTailoring() {
           </div>
           <button onClick={handleTailor} disabled={loading}
             style={{ background: loading ? "rgba(249,115,22,0.5)" : "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "12px", padding: "14px", fontWeight: 700, fontSize: "13px", cursor: loading ? "not-allowed" : "pointer", boxShadow: "0 4px 14px rgba(249,115,22,0.25)", transition: "all 0.2s" }}>
-            {loading ? "⏳ Tailoring Document..." : "✦ Tailor My Resume"}
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+              <Icon icon={loading ? "lucide:loader" : "lucide:sparkles"} style={{ fontSize: "15px", animation: loading ? "spin 1s linear infinite" : "none" }} />
+              {loading ? "Tailoring Document..." : "Tailor My Resume"}
+            </span>
           </button>
         </div>
 
         {/* Output */}
         <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
           {loading && <div style={{ background: "rgba(18,18,18,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", padding: "32px" }}><SkeletonLoader /></div>}
-          {!loading && !result && <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", minHeight: "200px" }}><EmptyState icon="🎯" title="Configure Your Target Role" description="Set the job title and description on the left, then hit Tailor to receive an AI-rewritten version." /></div>}
+          {!loading && !result && <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", minHeight: "200px" }}><EmptyState icon="lucide:target" title="Configure Your Target Role" description="Set the job title and description on the left, then hit Tailor to receive an AI-rewritten version." /></div>}
           {result && !loading && (
             <>
               <div style={{ background: "rgba(18,18,18,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", padding: isMobile ? "20px" : "28px", display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -78,15 +82,15 @@ export default function JobTailoring() {
                 </div>
                 <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.8)", lineHeight: "1.7", fontFamily: "'Playfair Display', serif", fontStyle: "italic", margin: 0 }}>"{result.tailoredSummary}"</p>
                 <button onClick={() => { navigator.clipboard.writeText(result.tailoredSummary); showToast("Tailored summary copied."); }}
-                  style={{ alignSelf: "flex-start", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px", padding: "8px 16px", color: "white", fontSize: "12px", fontWeight: 600, cursor: "pointer" }}>
-                  📋 Copy Summary
+                  style={{ alignSelf: "flex-start", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "8px", padding: "8px 16px", color: "white", fontSize: "12px", fontWeight: 600, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                  <Icon icon="lucide:clipboard" style={{ fontSize: "13px" }} /> Copy Summary
                 </button>
               </div>
               <div style={{ background: "rgba(18,18,18,0.6)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", padding: isMobile ? "20px" : "28px", display: "flex", flexDirection: "column", gap: "14px" }}>
                 <h3 style={{ fontSize: "15px", fontWeight: 700, fontFamily: "'Playfair Display', serif", margin: 0 }}>Key Changes Made</h3>
                 {result.keyChanges.map((c, i) => (
                   <div key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
-                    <span style={{ color: "#f97316", marginTop: "2px" }}>✦</span>
+                    <span style={{ color: "#f97316", display: "inline-flex", marginTop: "2px" }}><Icon icon="lucide:sparkles" style={{ fontSize: "13px" }} /></span>
                     <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.7)", lineHeight: "1.5" }}>{c}</span>
                   </div>
                 ))}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
+import { Icon } from "@iconify/react";
 
 export default function InterviewPrep() {
   const { showToast } = useApp();
@@ -13,13 +14,13 @@ export default function InterviewPrep() {
       return;
     }
     setSubscribed(true);
-    showToast("You've been added to the early access list! 🚀");
+    showToast("You've been added to the early access list!");
   };
 
   const features = [
-    { icon: "🎤", title: "Real-Time STAR Evaluation", desc: "Speak or type your answers and get graded instantly based on Situation, Task, Action, and Result framework." },
-    { icon: "🎭", title: "Persona-Based Mock Interviewers", desc: "Select custom personas—from friendly startup peers to high-intensity FAANG technical hiring leads." },
-    { icon: "📈", title: "Behavioral Analytics & Scoring", desc: "Track progress across multiple sessions with detailed heatmaps identifying your delivery weaknesses." },
+    { icon: "lucide:mic", title: "Real-Time STAR Evaluation", desc: "Speak or type your answers and get graded instantly based on Situation, Task, Action, and Result framework." },
+    { icon: "lucide:smile", title: "Persona-Based Mock Interviewers", desc: "Select custom personas—from friendly startup peers to high-intensity FAANG technical hiring leads." },
+    { icon: "lucide:trending-up", title: "Behavioral Analytics & Scoring", desc: "Track progress across multiple sessions with detailed heatmaps identifying your delivery weaknesses." },
   ];
 
   return (
@@ -47,10 +48,10 @@ export default function InterviewPrep() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          fontSize: "36px",
-          animation: "pulse 2s infinite"
+          animation: "pulse 2s infinite",
+          color: "#f97316"
         }}>
-          🎤
+          <Icon icon="lucide:mic" style={{ fontSize: "36px" }} />
         </div>
         <div style={{
           position: "absolute",
@@ -127,8 +128,8 @@ export default function InterviewPrep() {
         marginBottom: "48px"
       }}>
         {subscribed ? (
-          <div style={{ color: "#22c55e", fontWeight: 600, fontSize: "14px" }}>
-            🎉 You are on the list! We will notify you as soon as early access begins.
+          <div style={{ color: "#22c55e", fontWeight: 600, fontSize: "14px", display: "flex", alignItems: "center", gap: "8px" }}>
+            <Icon icon="lucide:party-popper" style={{ fontSize: "18px" }} /> You are on the list! We will notify you as soon as early access begins.
           </div>
         ) : (
           <form onSubmit={handleNotify} style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -197,7 +198,9 @@ export default function InterviewPrep() {
             flexDirection: "column",
             gap: "12px"
           }}>
-            <span style={{ fontSize: "28px" }}>{f.icon}</span>
+            <span style={{ display: "inline-flex", color: "#f97316" }}>
+              <Icon icon={f.icon} style={{ fontSize: "28px" }} />
+            </span>
             <h4 style={{ fontSize: "14px", fontWeight: 700, margin: 0, color: "white" }}>{f.title}</h4>
             <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.4)", lineHeight: "1.6", margin: 0 }}>{f.desc}</p>
           </div>

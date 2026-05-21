@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ export default function LoginForm() {
               fontSize: "14px",
             }}
           >
-            ✦
+            <Icon icon="lucide:sparkles" style={{ fontSize: "14px", color: "white" }} />
           </div>
           <span
             style={{
@@ -331,7 +332,7 @@ export default function LoginForm() {
               Entering Account...
             </>
           ) : (
-            "✦ Access Account"
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:log-in" style={{ fontSize: "14px" }} /> Access Account</span>
           )}
         </button>
       </form>

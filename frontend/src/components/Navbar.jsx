@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 const NAV_LINKS = ["Features", "Pricing", "About"];
 
@@ -53,7 +54,7 @@ export default function Navbar() {
                 fontSize: 14,
               }}
             >
-              ✦
+              <Icon icon="lucide:sparkles" style={{ fontSize: 14, color: "white" }} />
             </div>
             <span
               style={{
@@ -133,30 +134,12 @@ export default function Navbar() {
               cursor: "pointer",
               padding: 4,
               display: "none",
-              flexDirection: "column",
-              gap: 5,
+              alignItems: "center",
+              justifyContent: "center",
+              color: "white",
             }}
           >
-            {[0, 1, 2].map((i) => (
-              <span
-                key={i}
-                style={{
-                  display: "block",
-                  width: 22,
-                  height: 2,
-                  background: "#fff",
-                  borderRadius: 2,
-                  transition: "all 0.3s",
-                  transform: menuOpen
-                    ? i === 0
-                      ? "rotate(45deg) translateY(7px)"
-                      : i === 2
-                      ? "rotate(-45deg) translateY(-7px)"
-                      : "scaleX(0)"
-                    : "none",
-                }}
-              />
-            ))}
+            <Icon icon={menuOpen ? "lucide:x" : "lucide:menu"} style={{ fontSize: 24 }} />
           </button>
         </div>
 

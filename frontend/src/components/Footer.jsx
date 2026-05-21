@@ -1,3 +1,5 @@
+import { Icon } from "@iconify/react";
+
 const FOOTER_LINKS = ["Product", "Company", "Stay Fresh"];
 
 export default function Footer() {
@@ -36,7 +38,7 @@ export default function Footer() {
               color: "#fff",
             }}
           >
-            ✦
+            <Icon icon="lucide:sparkles" style={{ fontSize: 11, color: "white" }} />
           </div>
           <span
             style={{

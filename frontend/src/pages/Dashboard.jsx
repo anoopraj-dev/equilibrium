@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import ResumeCard from "../components/dashboard/ResumeCard";
+import { Icon } from "@iconify/react";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -18,19 +19,19 @@ export default function Dashboard() {
   };
 
   const topStats = [
-    { label: "Total Resumes", value: resumes.length, sub: "active drafts", icon: "📄" },
-    { label: "Avg. Strength", value: `${avgStrength}%`, sub: "narrative rating", icon: "⚡" },
-    { label: "AI Credits", value: `${aiUsage.monthlyCreditsUsed}/${aiUsage.monthlyCreditsLimit}`, sub: "used this month", icon: "✦" },
-    { label: "Status", value: "Elite", sub: "Premium tier active", icon: "🏆" },
+    { label: "Total Resumes", value: resumes.length, sub: "active drafts", icon: "lucide:file-text" },
+    { label: "Avg. Strength", value: `${avgStrength}%`, sub: "narrative rating", icon: "lucide:zap" },
+    { label: "AI Credits", value: `${aiUsage.monthlyCreditsUsed}/${aiUsage.monthlyCreditsLimit}`, sub: "used this month", icon: "lucide:sparkles" },
+    { label: "Status", value: "Elite", sub: "Premium tier active", icon: "lucide:trophy" },
   ];
 
   const quickActions = [
-    { label: "New Resume", desc: "Start from a template", icon: "📄", action: handleCreate },
-    { label: "ATS Scan", desc: "Grade against job post", icon: "⚡", action: () => navigate("/ats-analysis") },
-    { label: "Job Tailor", desc: "AI rewrite for role", icon: "🎯", action: () => navigate("/job-tailoring") },
-    { label: "Interview Prep", desc: "Mock Q&A with coach", icon: "🎤", action: () => navigate("/interview-prep") },
-    { label: "LinkedIn Import", desc: "Pull in profile data", icon: "🔗", action: () => navigate("/linkedin-import") },
-    { label: "Analytics", desc: "Track career metrics", icon: "📈", action: () => navigate("/analytics") },
+    { label: "New Resume", desc: "Start from a template", icon: "lucide:file-text", action: handleCreate },
+    { label: "ATS Scan", desc: "Grade against job post", icon: "lucide:zap", action: () => navigate("/ats-analysis") },
+    { label: "Job Tailor", desc: "AI rewrite for role", icon: "lucide:target", action: () => navigate("/job-tailoring") },
+    { label: "Interview Prep", desc: "Mock Q&A with coach", icon: "lucide:mic", action: () => navigate("/interview-prep") },
+    { label: "LinkedIn Import", desc: "Pull in profile data", icon: "lucide:linkedin", action: () => navigate("/linkedin-import") },
+    { label: "Analytics", desc: "Track career metrics", icon: "lucide:trending-up", action: () => navigate("/analytics") },
   ];
 
   const card = {
@@ -59,7 +60,7 @@ export default function Dashboard() {
               <h3 style={{ fontSize: isMobile ? "22px" : "26px", fontWeight: 800, margin: "6px 0 4px", color: "white", fontFamily: "'Plus Jakarta Sans', sans-serif" }}>{s.value}</h3>
               <span style={{ fontSize: "11px", color: "#f97316" }}>{s.sub}</span>
             </div>
-            <span style={{ fontSize: isMobile ? "24px" : "28px", opacity: 0.7 }}>{s.icon}</span>
+            <Icon icon={s.icon} style={{ fontSize: isMobile ? "24px" : "28px", color: "#f97316", opacity: 0.8 }} />
           </div>
         ))}
       </div>
@@ -73,7 +74,7 @@ export default function Dashboard() {
               style={{ ...card, cursor: "pointer", textAlign: "center", padding: isMobile ? "14px 8px" : "20px 12px", display: "flex", flexDirection: "column", alignItems: "center", gap: "6px", border: "1px solid rgba(255,255,255,0.06)", transition: "all 0.2s", background: "rgba(18,18,18,0.5)", width: "100%", boxSizing: "border-box" }}
               onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(249,115,22,0.35)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; e.currentTarget.style.transform = "none"; }}>
-              <span style={{ fontSize: isMobile ? "18px" : "22px" }}>{a.icon}</span>
+              <Icon icon={a.icon} style={{ fontSize: isMobile ? "20px" : "24px", color: "#f97316" }} />
               <span style={{ fontSize: "12px", fontWeight: 700, color: "white" }}>{a.label}</span>
               {!isMobile && <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.35)", lineHeight: "1.3" }}>{a.desc}</span>}
             </button>
@@ -101,9 +102,9 @@ export default function Dashboard() {
           </div>
 
           {resumes.length === 0 ? (
-            <div style={{ ...card, textAlign: "center", padding: "40px 20px", border: "1px dashed rgba(255,255,255,0.1)" }}>
-              <span style={{ fontSize: "28px", display: "block", marginBottom: "12px" }}>📄</span>
-              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", margin: "0 0 16px 0" }}>No resumes yet. Start with a template.</p>
+            <div style={{ ...card, textAlign: "center", padding: "40px 20px", border: "1px dashed rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+              <Icon icon="lucide:file-text" style={{ fontSize: "32px", color: "rgba(255,255,255,0.2)" }} />
+              <p style={{ fontSize: "13px", color: "rgba(255,255,255,0.4)", margin: 0 }}>No resumes yet. Start with a template.</p>
               <button onClick={handleCreate} style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "8px", padding: "9px 18px", fontWeight: 700, fontSize: "12px", cursor: "pointer" }}>
                 Create First Resume
               </button>
@@ -154,8 +155,8 @@ export default function Dashboard() {
                 { text: "LinkedIn profile imported", done: false },
               ].map((m, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <div style={{ width: "18px", height: "18px", borderRadius: "5px", border: m.done ? "1px solid #f97316" : "1px solid rgba(255,255,255,0.15)", background: m.done ? "rgba(249,115,22,0.15)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", color: "#f97316", flexShrink: 0 }}>
-                    {m.done && "✓"}
+                  <div style={{ width: "18px", height: "18px", borderRadius: "5px", border: m.done ? "1px solid #f97316" : "1px solid rgba(255,255,255,0.15)", background: m.done ? "rgba(249,115,22,0.15)" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    {m.done && <Icon icon="lucide:check" style={{ fontSize: "10px", color: "#f97316" }} />}
                   </div>
                   <span style={{ fontSize: "12px", color: m.done ? "rgba(255,255,255,0.8)" : "rgba(255,255,255,0.35)" }}>{m.text}</span>
                 </div>

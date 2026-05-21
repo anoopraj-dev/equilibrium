@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import { Accordion } from "../components/dashboard/CommonUI";
+import { Icon } from "@iconify/react";
 
 export default function PricingPage() {
   const navigate = useNavigate();
@@ -151,7 +152,7 @@ export default function PricingPage() {
               <div style={{ display: "flex", flexDirection: "column", gap: "14px", flex: 1, marginBottom: "32px" }}>
                 {p.features.map((f, i) => (
                   <div key={i} style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <span style={{ color: "#f97316", fontWeight: 700, fontSize: "14px" }}>✓</span>
+                    <Icon icon="lucide:check" style={{ color: "#f97316", fontSize: "14px" }} />
                     <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.75)" }}>{f}</span>
                   </div>
                 ))}

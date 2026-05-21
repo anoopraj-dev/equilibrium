@@ -4,6 +4,7 @@ import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
 import { Toast } from "../components/dashboard/CommonUI";
+import { Icon } from "@iconify/react";
 
 const PATH_TO_TAB = {
   "/dashboard":       "overview",
@@ -50,11 +51,11 @@ export default function DashboardLayout() {
 
   // Mobile Bottom Nav Items
   const mobileNavItems = [
-    { id: "overview",   path: "/dashboard",       label: "Home",      icon: "🏠" },
-    { id: "templates",  path: "/templates",        label: "Templates", icon: "🗂" },
-    { id: "narrative",  path: "/ats-analysis",     label: "ATS",       icon: "⚡" },
-    { id: "tailoring",  path: "/job-tailoring",    label: "Tailor",    icon: "🎯" },
-    { id: "settings",   path: "/settings",         label: "Settings",  icon: "⚙️" },
+    { id: "overview",   path: "/dashboard",       label: "Home",      icon: "lucide:home" },
+    { id: "templates",  path: "/templates",        label: "Templates", icon: "lucide:layout-template" },
+    { id: "narrative",  path: "/ats-analysis",     label: "ATS",       icon: "lucide:zap" },
+    { id: "tailoring",  path: "/job-tailoring",    label: "Tailor",    icon: "lucide:target" },
+    { id: "settings",   path: "/settings",         label: "Settings",  icon: "lucide:settings" },
   ];
 
   return (
@@ -111,7 +112,7 @@ export default function DashboardLayout() {
 
             <div style={{ display: "flex", alignItems: "center", gap: "12px", flexShrink: 0 }}>
               <button style={{ width: "36px", height: "36px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "9px", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", position: "relative" }}>
-                <span style={{ fontSize: "14px" }}>🔔</span>
+                <Icon icon="lucide:bell" style={{ fontSize: "16px", color: "white" }} />
                 <span style={{ position: "absolute", top: "8px", right: "8px", width: "5px", height: "5px", background: "#f97316", borderRadius: "50%" }} />
               </button>
               
@@ -139,8 +140,8 @@ export default function DashboardLayout() {
               ) : (
                 <button
                   onClick={() => navigate("/ats-analysis")}
-                  style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "8px", padding: "8px 14px", fontWeight: 700, fontSize: "12px", cursor: "pointer", boxShadow: "0 3px 10px rgba(249,115,22,0.28)", whiteSpace: "nowrap" }}>
-                  ✦ AI Assist
+                  style={{ background: "linear-gradient(135deg,#f97316,#ea580c)", color: "white", border: "none", borderRadius: "8px", padding: "8px 14px", fontWeight: 700, fontSize: "12px", cursor: "pointer", boxShadow: "0 3px 10px rgba(249,115,22,0.28)", whiteSpace: "nowrap", display: "inline-flex", alignItems: "center", gap: "6px" }}>
+                  <Icon icon="lucide:sparkles" style={{ fontSize: "13px" }} /> AI Assist
                 </button>
               )}
             </div>
@@ -199,7 +200,7 @@ export default function DashboardLayout() {
                   fontFamily: "'Plus Jakarta Sans', sans-serif"
                 }}
               >
-                <span style={{ fontSize: "18px" }}>{item.icon}</span>
+                <Icon icon={item.icon} style={{ fontSize: "20px" }} />
                 <span>{item.label}</span>
               </button>
             );
@@ -240,10 +241,10 @@ export default function DashboardLayout() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "20px",
-              margin: "0 auto 16px"
+              margin: "0 auto 16px",
+              color: "#ef4444"
             }}>
-              🚪
+              <Icon icon="lucide:log-out" style={{ fontSize: "22px" }} />
             </div>
             <h3 style={{ fontSize: "16px", fontWeight: 700, margin: "0 0 8px 0" }}>Sign Out</h3>
             <p style={{ fontSize: "13px", color: "rgba(255, 255, 255, 0.45)", lineHeight: "1.5", margin: "0 0 24px 0" }}>

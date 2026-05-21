@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../context/AppContext";
 import { useBreakpoint } from "../hooks/useIsMobile";
+import { Icon } from "@iconify/react";
 
 export default function Onboarding() {
   const navigate = useNavigate();
@@ -229,7 +230,15 @@ export default function Onboarding() {
             transition: "all 0.2s",
           }}
         >
-          {step === 3 ? "Complete Customization ✓" : "Next Step →"}
+          {step === 3 ? (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+              Complete Customization <Icon icon="lucide:check" style={{ fontSize: "14px" }} />
+            </span>
+          ) : (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+              Next Step <Icon icon="lucide:arrow-right" style={{ fontSize: "14px" }} />
+            </span>
+          )}
         </button>
       </div>
     </div>

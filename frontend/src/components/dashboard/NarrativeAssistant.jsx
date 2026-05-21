@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Icon } from "@iconify/react";
 
 export default function NarrativeAssistant() {
   const [role, setRole] = useState("Lead Product Engineer");
@@ -72,7 +73,7 @@ export default function NarrativeAssistant() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "20px" }}>✦</span>
+          <Icon icon="lucide:sparkles" style={{ fontSize: "20px", color: "#f97316" }} />
           <h2 style={{ fontSize: "18px", fontWeight: 700, fontFamily: "'Playfair Display', serif", margin: 0 }}>
             Configure Narrative
           </h2>
@@ -203,7 +204,7 @@ export default function NarrativeAssistant() {
                 Synthesizing Story...
               </>
             ) : (
-              "✦ Build Executive Summary"
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:sparkles" style={{ fontSize: "14px" }} /> Build Executive Summary</span>
             )}
           </button>
         </form>
@@ -284,7 +285,7 @@ export default function NarrativeAssistant() {
             </p>
           ) : (
             <div style={{ textAlign: "center", padding: "60px 20px" }}>
-              <span style={{ fontSize: "40px", display: "block", marginBottom: "16px" }}>✍️</span>
+              <span style={{ display: "flex", justifyContent: "center", marginBottom: "16px", color: "rgba(255,255,255,0.3)" }}><Icon icon="lucide:pen-tool" style={{ fontSize: "40px" }} /></span>
               <p style={{ fontSize: "14px", color: "rgba(255, 255, 255, 0.4)", lineHeight: "1.6", maxWidth: "280px", margin: "0 auto" }}>
                 Fill out the narrative specifications and click build to generate your executive story.
               </p>
@@ -324,7 +325,7 @@ export default function NarrativeAssistant() {
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.08)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255,255,255,0.04)")}
             >
-              📋 Copy to Clipboard
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:copy" style={{ fontSize: "14px" }} /> Copy to Clipboard</span>
             </button>
             <button
               style={{
@@ -343,7 +344,7 @@ export default function NarrativeAssistant() {
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(249, 115, 22, 0.15)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(249, 115, 22, 0.1)")}
             >
-              💾 Save to Template
+              <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}><Icon icon="lucide:save" style={{ fontSize: "14px" }} /> Save to Template</span>
             </button>
           </div>
         )}

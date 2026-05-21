@@ -1,29 +1,30 @@
 import { useNavigate } from "react-router-dom";
 import { useApp } from "../../context/AppContext";
+import { Icon } from "@iconify/react";
 
 const NAV_SECTIONS = [
   {
     label: "WORKSPACE",
     items: [
-      { id: "overview",   path: "/dashboard",       label: "Overview",         icon: "📊" },
-      { id: "analytics",  path: "/analytics",        label: "Analytics",        icon: "📈" },
-      { id: "templates",  path: "/templates",        label: "Templates",        icon: "🗂" },
+      { id: "overview",   path: "/dashboard",       label: "Overview",         icon: "lucide:layout-dashboard" },
+      { id: "analytics",  path: "/analytics",        label: "Analytics",        icon: "lucide:trending-up" },
+      { id: "templates",  path: "/templates",        label: "Templates",        icon: "lucide:layout-template" },
     ],
   },
   {
     label: "AI TOOLS",
     items: [
-      { id: "narrative",  path: "/ats-analysis",     label: "ATS Scanner",      icon: "⚡" },
-      { id: "tailoring",  path: "/job-tailoring",    label: "Job Tailoring",    icon: "🎯" },
-      { id: "interview",  path: "/interview-prep",   label: "Interview Coach",  icon: "🎤" },
-      { id: "linkedin",   path: "/linkedin-import",  label: "LinkedIn Import",  icon: "🔗" },
+      { id: "narrative",  path: "/ats-analysis",     label: "ATS Scanner",      icon: "lucide:zap" },
+      { id: "tailoring",  path: "/job-tailoring",    label: "Job Tailoring",    icon: "lucide:target" },
+      { id: "interview",  path: "/interview-prep",   label: "Interview Coach",  icon: "lucide:mic" },
+      { id: "linkedin",   path: "/linkedin-import",  label: "LinkedIn Import",  icon: "lucide:linkedin" },
     ],
   },
   {
     label: "ACCOUNT",
     items: [
-      { id: "settings",   path: "/settings",         label: "Settings",         icon: "⚙️" },
-      { id: "pricing",    path: "/pricing",           label: "Upgrade Plan",     icon: "✦" },
+      { id: "settings",   path: "/settings",         label: "Settings",         icon: "lucide:settings" },
+      { id: "pricing",    path: "/pricing",           label: "Upgrade Plan",     icon: "lucide:sparkles" },
     ],
   },
 ];
@@ -59,7 +60,9 @@ export default function DashboardSidebar({ activeTab }) {
     >
       {/* Brand */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "32px", paddingLeft: "8px", cursor: "pointer" }} onClick={() => navigate("/dashboard")}>
-        <div style={{ width: "28px", height: "28px", borderRadius: "8px", background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)", boxShadow: "0 0 14px rgba(249,115,22,0.45)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", color: "white", flexShrink: 0 }}>✦</div>
+        <div style={{ width: "28px", height: "28px", borderRadius: "8px", background: "linear-gradient(135deg, #f97316 0%, #ea580c 100%)", boxShadow: "0 0 14px rgba(249,115,22,0.45)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "13px", color: "white", flexShrink: 0 }}>
+          <Icon icon="lucide:sparkles" style={{ fontSize: "14px" }} />
+        </div>
         <span style={{ color: "#fff", fontWeight: 800, fontSize: "17px", letterSpacing: "-0.5px", fontFamily: "'Playfair Display', serif" }}>
           Equili<span style={{ color: "#f97316" }}>brium</span>
         </span>
@@ -98,9 +101,11 @@ export default function DashboardSidebar({ activeTab }) {
                       transition: "all 0.18s ease",
                     }}
                     onMouseEnter={e => { if (!isActive) { e.currentTarget.style.color = "#fff"; e.currentTarget.style.background = "rgba(255,255,255,0.04)"; } }}
-                    onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "rgba(255,255,255,0.6)"; e.currentTarget.style.background = "transparent"; } }}
+                    onMouseLeave={e => { if (!isActive) { e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"; e.currentTarget.style.background = "transparent"; } }}
                   >
-                    <span style={{ fontSize: "15px", width: "20px", flexShrink: 0 }}>{item.icon}</span>
+                    <span style={{ fontSize: "16px", width: "20px", flexShrink: 0, display: "inline-flex", alignItems: "center" }}>
+                      <Icon icon={item.icon} />
+                    </span>
                     {item.label}
                   </button>
                 );
@@ -127,7 +132,7 @@ export default function DashboardSidebar({ activeTab }) {
           onMouseEnter={e => { e.currentTarget.style.color = "#ef4444"; e.currentTarget.style.borderColor = "rgba(239,68,68,0.3)"; e.currentTarget.style.background = "rgba(239,68,68,0.05)"; }}
           onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.5)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)"; e.currentTarget.style.background = "rgba(255,255,255,0.02)"; }}
         >
-          🚪 Sign Out
+          <Icon icon="lucide:log-out" style={{ fontSize: "14px" }} /> Sign Out
         </button>
       </div>
     </aside>
