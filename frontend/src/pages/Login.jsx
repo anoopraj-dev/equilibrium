@@ -1,8 +1,8 @@
 import BackgroundScene from "../components/3d/BackgroundScene";
 import { Link } from "react-router-dom";
-import SignupForm from "../components/auth/SignupForm";
+import LoginForm from "../components/auth/LoginForm";
 
-export default function Signup() {
+export default function Login() {
   return (
     <div
       style={{
@@ -38,7 +38,7 @@ export default function Signup() {
           color: rgba(255, 255, 255, 0.25);
         }
 
-        .signup-glow {
+        .login-glow {
           position: absolute;
           width: 500px;
           height: 500px;
@@ -54,7 +54,7 @@ export default function Signup() {
       <BackgroundScene isSignup={true} />
 
       {/* Radial Glow underneath card */}
-      <div className="signup-glow" />
+      <div className="login-glow" />
 
       {/* Header Home Link */}
       <Link
@@ -79,8 +79,8 @@ export default function Signup() {
         <span style={{ fontSize: "16px" }}>←</span> Back to home
       </Link>
 
-      {/* Signup Form Card */}
-      <SignupForm />
+      {/* Login Form Card */}
+      <LoginForm />
     </div>
   );
 }

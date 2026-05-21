@@ -52,7 +52,7 @@ export default function CTA() {
         >
           Ready to Dominate
           <br />
-          The Market?
+          The Job Market?
         </h2>
         <p
           style={{

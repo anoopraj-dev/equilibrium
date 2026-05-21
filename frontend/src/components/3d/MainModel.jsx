@@ -3,7 +3,7 @@ import { useFrame } from "@react-three/fiber";
 import { useGLTF, Float, useAnimations } from "@react-three/drei";
 import * as THREE from "three";
 
-export default function MainModel({ scrollProgress }) {
+export default function MainModel({ scrollProgress, isSignup = false }) {
   const { scene, animations } = useGLTF("/models/space.glb");
   const groupRef = useRef();
   const prevScrollRef = useRef(scrollProgress);
@@ -14,10 +14,13 @@ export default function MainModel({ scrollProgress }) {
       const action = actions[Object.keys(actions)[0]];
       if (action) {
         action.play();
-        action.paused = true;
+        action.paused = !isSignup; // Play built-in animation natively on signup page
+        if (isSignup) {
+          action.speed = 1.0; // Play the animation that comes with the model at normal speed!
+        }
       }
     }
-  }, [actions]);
+  }, [actions, isSignup]);
 
   useEffect(() => {
     if (scene) {
@@ -51,8 +54,10 @@ export default function MainModel({ scrollProgress }) {
       // Responsive viewport check for mobile
       const isMobile = state.viewport.width < 10;
       
-      // Keep large screens exactly at 0.016; tune mobile scale to a neat 0.008
-      const baseScale = isMobile ? 0.01 : 0.016;
+      // Scaled up space model on signup page for maximum immersion
+      const baseScale = isSignup
+        ? (isMobile ? 0.018 : 0.028)
+        : (isMobile ? 0.01 : 0.016);
       
       // Dynamic factor that peaks at 0.5 scroll (0 -> 1 -> 0)
       const factor = Math.max(0, 1 - Math.abs(scrollProgress - 0.5) * 2);
@@ -71,7 +76,12 @@ export default function MainModel({ scrollProgress }) {
       const targetScale = baseScale - factor * (baseScale * 0.03);
       groupRef.current.scale.set(targetScale, targetScale, targetScale);
 
-      if (actions && Object.keys(actions).length > 0) {
+      if (isSignup) {
+        // Perfectly stable, frame-rate independent rotation (0.32 radians per second)
+        // This is 100% stable, lacks any loop seam stutter, and is completely smooth!
+        const delta = Math.min(0.1, state.clock.getDelta());
+        groupRef.current.rotation.y += delta * 0.5;
+      } else if (actions && Object.keys(actions).length > 0) {
         const action = actions[Object.keys(actions)[0]];
         if (action) {
           const duration = action.getClip().duration;

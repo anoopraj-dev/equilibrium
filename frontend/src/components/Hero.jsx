@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Hero() {
   return (
     <section
@@ -112,31 +114,33 @@ export default function Hero() {
           <div
             style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 40 }}
           >
-            <button
-              style={{
-                background: "#f97316",
-                color: "#fff",
-                border: "none",
-                borderRadius: 10,
-                padding: "14px 28px",
-                fontWeight: 700,
-                fontSize: 15,
-                cursor: "pointer",
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                boxShadow: "0 0 24px rgba(249,115,22,0.35)",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = "#ea580c";
-                e.target.style.transform = "translateY(-2px)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "#f97316";
-                e.target.style.transform = "none";
-              }}
-            >
-              ✦ Craft Your Resume
-            </button>
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              <button
+                style={{
+                  background: "#f97316",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 10,
+                  padding: "14px 28px",
+                  fontWeight: 700,
+                  fontSize: 15,
+                  cursor: "pointer",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  boxShadow: "0 0 24px rgba(249,115,22,0.35)",
+                  transition: "all 0.2s",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "#ea580c";
+                  e.target.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "#f97316";
+                  e.target.style.transform = "none";
+                }}
+              >
+                ✦ Craft Your Resume
+              </button>
+            </Link>
             <button
               style={{
                 background: "transparent",

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const NAV_LINKS = ["Features", "Pricing", "About"];
 
@@ -91,32 +92,35 @@ export default function Navbar() {
                 {l}
               </a>
             ))}
-            <button
-              style={{
-                background: "#f97316",
-                color: "#fff",
-                border: "none",
-                borderRadius: 8,
-                padding: "8px 20px",
-                fontWeight: 700,
-                fontSize: 13,
-                cursor: "pointer",
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-                letterSpacing: "0.3px",
-                boxShadow: "0 0 16px rgba(249,115,22,0.3)",
-                transition: "all 0.2s",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.background = "#ea580c";
-                e.target.style.transform = "translateY(-1px)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.background = "#f97316";
-                e.target.style.transform = "none";
-              }}
-            >
-              Get Started
-            </button>
+            <Link to="/signup" style={{ textDecoration: "none" }}>
+              <button
+                style={{
+                  background: "#f97316",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 8,
+                  padding: "8px 20px",
+                  fontWeight: 700,
+                  fontSize: 13,
+                  cursor: "pointer",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  letterSpacing: "0.3px",
+                  boxShadow: "0 0 16px rgba(249,115,22,0.3)",
+                  transition: "all 0.2s",
+                  display: "block",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.background = "#ea580c";
+                  e.target.style.transform = "translateY(-1px)";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.background = "#f97316";
+                  e.target.style.transform = "none";
+                }}
+              >
+                Get Started
+              </button>
+            </Link>
           </div>
 
           {/* Hamburger */}
@@ -181,23 +185,24 @@ export default function Navbar() {
                 {l}
               </a>
             ))}
-            <button
-              style={{
-                marginTop: 12,
-                background: "#f97316",
-                color: "#fff",
-                border: "none",
-                borderRadius: 8,
-                padding: "10px 24px",
-                fontWeight: 700,
-                fontSize: 14,
-                cursor: "pointer",
-                width: "100%",
-                fontFamily: "'Plus Jakarta Sans', sans-serif",
-              }}
-            >
-              Get Started
-            </button>
+            <Link to="/signup" style={{ textDecoration: "none", display: "block", marginTop: 12 }}>
+              <button
+                style={{
+                  background: "#f97316",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: 8,
+                  padding: "10px 24px",
+                  fontWeight: 700,
+                  fontSize: 14,
+                  cursor: "pointer",
+                  width: "100%",
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                }}
+              >
+                Get Started
+              </button>
+            </Link>
           </div>
         )}
       </div>
